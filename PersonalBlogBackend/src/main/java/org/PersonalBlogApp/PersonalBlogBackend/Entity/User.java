@@ -20,15 +20,6 @@ public class User {
     @Column(name="u_email")
     private String userEmail;
 
-    public User() {
-    }
-
-    public User(String userUsername, String userPassword, String userEmail) {
-        this.userUsername = userUsername;
-        this.userPassword = userPassword;
-        this.userEmail = userEmail;
-    }
-
     public Long getUserId() {
         return userId;
     }

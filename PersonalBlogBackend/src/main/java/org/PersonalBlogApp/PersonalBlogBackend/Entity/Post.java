@@ -33,17 +33,6 @@ public class Post {
     @NotBlank
     private String postUsername;
 
-    public Post() {
-    }
-
-    public Post(String postTitle, String postContent, Instant postCreatedOn, Instant postUpdatedAt, String postUsername) {
-        this.postTitle = postTitle;
-        this.postContent = postContent;
-        this.postCreatedOn = postCreatedOn;
-        this.postUpdatedAt = postUpdatedAt;
-        this.postUsername = postUsername;
-    }
-
     public Long getPostId() {
         return postId;
     }
