@@ -3,21 +3,21 @@ package org.PersonalBlogApp.PersonalBlogBackend.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tbl_users")
+@Table(name = "tbl_users")
 public class User {
 
     @Id
-    @Column(name="u_id")
+    @Column(name = "u_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(name="u_username")
+    @Column(name = "u_username")
     private String userUsername;
 
-    @Column(name="u_password")
+    @Column(name = "u_password")
     private String userPassword;
 
-    @Column(name="u_email")
+    @Column(name = "u_email")
     private String userEmail;
 
     public Long getUserId() {

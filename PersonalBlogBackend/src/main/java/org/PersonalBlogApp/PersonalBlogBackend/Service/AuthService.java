@@ -4,6 +4,7 @@ import org.PersonalBlogApp.PersonalBlogBackend.DAO.UserDao;
 import org.PersonalBlogApp.PersonalBlogBackend.DTO.LoginRequest;
 import org.PersonalBlogApp.PersonalBlogBackend.DTO.RegisterRequest;
 import org.PersonalBlogApp.PersonalBlogBackend.Entity.User;
+import org.PersonalBlogApp.PersonalBlogBackend.Security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +21,8 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtProvider jwtProvider;
 
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
@@ -29,11 +32,12 @@ public class AuthService {
         userDao.save(user);
     }
 
-    public void login(LoginRequest loginRequest) {
+    public String login(LoginRequest loginRequest) {
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername()
                         , loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        return jwtProvider.generateToken(authentication);
     }
 
     private String encodePassword(String password) {

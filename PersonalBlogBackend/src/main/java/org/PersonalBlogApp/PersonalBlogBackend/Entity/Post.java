@@ -6,30 +6,30 @@ import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
 @Entity
-@Table(name="tbl_posts")
+@Table(name = "tbl_posts")
 public class Post {
 
     @Id
-    @Column(name="p_id")
+    @Column(name = "p_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    @Column(name="p_title")
+    @Column(name = "p_title")
     @NotBlank
     private String postTitle;
 
     @Lob
-    @Column(name="p_content")
+    @Column(name = "p_content")
     @NotEmpty
     private String postContent;
 
-    @Column(name="p_created")
+    @Column(name = "p_created")
     private Instant postCreatedOn;
 
-    @Column(name="p_updated")
+    @Column(name = "p_updated")
     private Instant postUpdatedAt;
 
-    @Column(name="p_username")
+    @Column(name = "p_username")
     @NotBlank
     private String postUsername;
 

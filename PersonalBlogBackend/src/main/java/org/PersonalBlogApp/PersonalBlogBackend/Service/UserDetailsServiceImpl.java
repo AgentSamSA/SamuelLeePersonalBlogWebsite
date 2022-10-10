@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Collections;
 
-@Service
+@Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -21,11 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUserName(username).orElseThrow(() ->
+        User user = userDao.findByUserUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("No user found " + username));
         return new org.springframework.security.core.userdetails.User(user.getUserUsername(),
                 user.getUserPassword(),
-                true, true, true, true,
                 getAuthorities("ROLE_USER"));
     }
 
