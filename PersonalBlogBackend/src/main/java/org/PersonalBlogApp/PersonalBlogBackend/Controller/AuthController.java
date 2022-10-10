@@ -1,6 +1,6 @@
 package org.PersonalBlogApp.PersonalBlogBackend.Controller;
 
-import org.PersonalBlogApp.PersonalBlogBackend.DTO.RegisterRequest;
+import org.PersonalBlogApp.PersonalBlogBackend.DTO.*;
 import org.PersonalBlogApp.PersonalBlogBackend.Service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,5 +21,10 @@ public class AuthController {
     public ResponseEntity signup(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody LoginRequest loginRequest) {
+        authService.login(loginRequest);
     }
 }
